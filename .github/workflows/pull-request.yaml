@@ -1,0 +1,21 @@
+name: PR Branch and Codeowner Check
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  validate_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check target branch
+        if: github.base_ref != 'development' && !contains(github.event.pull_request.user.login, github.event.repository.codeowners)
+        run: |
+          echo "ERROR: Pull requests are only allowed to the 'development' branch, except for code owners."
+          exit 1
+
+      - name: Check codeowner for main branch
+        if: github.base_ref == 'main' && !contains(github.event.pull_request.user.login, github.event.repository.codeowners)
+        run: |
+          echo "ERROR: Only code owners can create pull requests against the 'main' branch."
+          exit 1
