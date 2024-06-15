@@ -7,10 +7,10 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36">
+    <div className="pt-18 pb-20">
       <div
         id="dot-grid"
-        className="relative flex h-screen w-full items-center justify-center bg-white bg-dot-black/[0.2] dark:bg-surface-dark dark:bg-dot-white/[0.15]"
+        className="relative flex h-[50vh] w-full items-center justify-center bg-white bg-dot-black/[0.2] dark:bg-surface-dark dark:bg-dot-white/[0.15] md:h-[70vh] lg:h-screen"
       >
         <div
           id="radial-gradient"

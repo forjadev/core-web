@@ -1,10 +1,34 @@
-import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaEnvelope,
+  FaFolder,
+  FaGithub,
+  FaLinkedin,
+  FaQuoteLeft,
+  FaUserGroup,
+} from "react-icons/fa6";
 
 export const navItems = [
-  { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
-  { name: "Contact", link: "#contact" },
+  {
+    name: "About",
+    link: "#about",
+    icon: <FaUserGroup />,
+  },
+  {
+    name: "Projects",
+    link: "#projects",
+    icon: <FaFolder />,
+  },
+  {
+    name: "Testimonials",
+    link: "#testimonials",
+    icon: <FaQuoteLeft />,
+  },
+  {
+    name: "Contact",
+    link: "#contact",
+    icon: <FaEnvelope />,
+  },
 ];
 
 export const socialLinks = [

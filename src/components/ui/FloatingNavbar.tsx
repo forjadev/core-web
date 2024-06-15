@@ -12,6 +12,20 @@ import React, { useState } from "react";
 import logo from "../../../public/logo.svg";
 import Logo from "./Logo";
 
+const animationVariants = {
+  initial: {
+    opacity: 0,
+    y: -30,
+  },
+  animate: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.15 * index,
+    },
+  }),
+};
+
 export const FloatingNav = ({
   navItems,
   className,
@@ -65,12 +79,12 @@ export const FloatingNav = ({
         transition={{
           duration: 0.2,
         }}
-        className="container fixed top-0 z-[9000] flex w-full items-center justify-between py-12"
+        className="container fixed top-0 z-[9000] flex w-full items-center justify-between p-4 sm:py-12 lg:px-0"
       >
         <Logo className="size-10 text-orange" />
-        <motion.div
+        <motion.ul
           className={cn(
-            "border-black/.1 inset-x-0 top-10 z-[5000] flex max-w-fit items-center justify-center space-x-4 rounded-lg border bg-gradient-to-r from-surface-dark-crust to-surface-dark-mantle px-10 py-5 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:min-w-[70vw] lg:min-w-fit",
+            "border-black/.1 inset-x-0 top-10 z-[5000] flex max-w-fit items-center justify-center space-x-4 rounded-lg border bg-gradient-to-r from-surface-dark-crust to-surface-dark-mantle px-10 py-5 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] lg:min-w-fit",
             className,
           )}
           style={{
@@ -79,25 +93,34 @@ export const FloatingNav = ({
             border: "1px solid rgba(255, 255, 255, 0.125)",
           }}
         >
-          {navItems.map((navItem: any, idx: number) => (
-            <div className="group relative" key={`link=${idx}`}>
+          {navItems.map(({ link, name, icon }, idx: number) => (
+            <li className="group relative" key={`link=${idx}`}>
               <Link
-                href={navItem.link}
+                href={link}
                 className={cn(
-                  "relative flex items-center space-x-1 text-neutral-50 hover:text-orange dark:text-neutral-50 hover:dark:text-orange",
+                  "relative flex items-center gap-2 space-x-1 text-neutral-50 hover:text-orange dark:text-neutral-50 hover:dark:text-orange",
                 )}
               >
-                <span className="block sm:hidden">{navItem.icon}</span>
-                <span className="!cursor-pointer text-sm">{navItem.name}</span>
+                <span className="block sm:hidden">{icon}</span>
+                <span className="hidden !cursor-pointer text-sm sm:block">
+                  {name}
+                </span>
               </Link>
               <span className="absolute -bottom-2 left-1/2 h-1 w-1 rounded-full bg-orange opacity-0 transition-opacity duration-200 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] group-hover:opacity-100"></span>
-            </div>
+            </li>
           ))}
-        </motion.div>
+        </motion.ul>
         {socialLinks && (
-          <motion.div className="flex flex-col items-center justify-center gap-3 md:flex-row md:gap-4 xl:gap-6">
+          <motion.ul className="flex flex-col items-center justify-center gap-3 md:flex-row md:gap-4 xl:gap-6">
             {socialLinks.map(({ name, link, icon }, idx: number) => (
-              <div className="group relative" key={`link=${idx}`}>
+              <motion.li
+                className="group relative"
+                key={`link=${idx}`}
+                custom={idx}
+                variants={animationVariants}
+                initial={"initial"}
+                animate={"animate"}
+              >
                 <Link
                   href={link}
                   target="_blank"
@@ -107,9 +130,9 @@ export const FloatingNav = ({
                 >
                   <span className="!cursor-pointer text-xl">{icon}</span>
                 </Link>
-              </div>
+              </motion.li>
             ))}
-          </motion.div>
+          </motion.ul>
         )}
       </motion.nav>
     </AnimatePresence>

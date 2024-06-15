@@ -9,6 +9,8 @@ export default function Home() {
       <FloatingNav navItems={navItems} socialLinks={socialLinks} />
       <div className="container w-full">
         <Hero />
+        {/* TOOD: Delete this, only for testing*/}
+        <div className="h-screen"></div>
       </div>
     </main>
   );
