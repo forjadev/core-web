@@ -11,6 +11,20 @@ export interface SocialLinksProps {
   className?: string;
 }
 
+const socialAnimationVariants = {
+  initial: {
+    opacity: 0,
+    y: -30,
+  },
+  animate: (idx: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.15 * idx,
+    },
+  }),
+};
+
 export const SocialLinks = ({ links, className }: SocialLinksProps) => {
   return (
     <motion.div
@@ -20,7 +34,14 @@ export const SocialLinks = ({ links, className }: SocialLinksProps) => {
       )}
     >
       {links.map(({ name, link, icon }, idx: number) => (
-        <div className="group relative" key={`link=${idx}`}>
+        <motion.div
+          className="group relative"
+          key={`link=${idx}`}
+          custom={idx}
+          variants={socialAnimationVariants}
+          initial="initial"
+          animate="animate"
+        >
           <Link
             href={link}
             target="_blank"
@@ -28,7 +49,7 @@ export const SocialLinks = ({ links, className }: SocialLinksProps) => {
           >
             <span className="!cursor-pointer text-xl">{icon}</span>
           </Link>
-        </div>
+        </motion.div>
       ))}
     </motion.div>
   );

@@ -28,8 +28,7 @@ const Hero = () => {
             </motion.p>
 
             <TextGenerateEffect
-              words="Where Developers Ignite their
-              careers"
+              words="Where Developers Ignite their careers"
               className="text-center text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
               highlighted={["Ignite"]}
               highlightedClassName="text-orange"
