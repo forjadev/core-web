@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         className={cn(
           fonts.map((font) => font.variable).join(" "),
-          "dark:bg-surface-dark bg-white text-neutral-900 dark:text-neutral-50",
+          "bg-white text-neutral-900 dark:bg-surface-dark dark:text-neutral-50",
         )}
       >
         <ThemeProvider
