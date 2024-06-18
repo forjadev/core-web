@@ -59,10 +59,10 @@ export const FloatingNav = ({
       <motion.nav
         initial={{
           opacity: 1,
-          y: -100,
+          y: "-100%",
         }}
         animate={{
-          y: visible ? 0 : -100,
+          y: visible ? 0 : "-100%",
           opacity: visible ? 1 : 0,
         }}
         transition={{
