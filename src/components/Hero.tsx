@@ -7,16 +7,16 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36">
+    <div className="py-20 md:py-36">
       <div
         id="dot-grid"
-        className="relative flex h-screen w-full items-center justify-center bg-white bg-dot-black/[0.2] dark:bg-surface-dark dark:bg-dot-white/[0.15]"
+        className="relative flex h-[calc(100vh-5rem)] w-full items-center justify-center bg-white bg-dot-black/[0.2] dark:bg-surface-dark dark:bg-dot-white/[0.15] md:h-[calc(100vh-9rem)]"
       >
         <div
           id="radial-gradient"
           className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-surface-dark"
         ></div>
-        <div className="relative z-10 my-20 flex justify-center">
+        <div className="relative z-10">
           <div className="flex max-w-[89vw] flex-col items-center justify-center gap-3 md:max-w-2xl lg:max-w-[60vw] lg:gap-4 xl:gap-6">
             <motion.p
               className="text-center font-secondary text-xs uppercase tracking-widest text-neutral-300 md:text-sm lg:text-base xl:text-lg"
